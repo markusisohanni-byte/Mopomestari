@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mopomestari - Korjaa. Rakenna. Opettele.</title>
+    <style>
+        :root {
+            --primary-blue: #004AAD;
+            --secondary-blue: #007BFF;
+            --white: #ffffff;
+            --light-gray: #f4f7f6;
+            --dark-text: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--white);
+        }
+
+        header {
+            background: var(--white);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container img {
+            height: 60px;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0, 74, 173, 0.05), rgba(255, 255, 255, 1));
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .hero-image {
+            max-width: 600px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .cta-button {
+            background-color: var(--primary-blue);
+            color: white;
+            padding: 15px 35px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary-blue);
+            transform: scale(1.05);
+        }
+
+        section {
+            padding: 60px 5%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--primary-blue);
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid var(--primary-blue);
+        }
+
+        .partners {
+            background-color: var(--primary-blue);
+            color: white;
+            text-align: center;
+            border-radius: 20px;
+            margin: 40px auto;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 40px 5%;
+            margin-top: 60px;
+        }
+
+        .footer-link {
+            color: #ccc;
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin: 0 10px;
+        }
+
+        .email-link {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        /* MODAALIN TYYLIT */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 85%;
+            max-width: 800px;
+            position: relative;
+            text-align: left;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        }
+
+        .close-btn {
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+            line-height: 20px;
+        }
+
+        .close-btn:hover { color: #000; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="logo.png" alt="Mopomestari Logo">
+        </div>
+        <nav>
+            <a onclick="openModal('infoModal')">Tietoa</a>
+            <a href="#kumppanit">Yhteistyö</a>
+            <a href="#ota-yhteytta">Ota yhteyttä</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Haluatko sinäkin olla Mopomestari?</h1>
+        <img src="mopo-kuva.jpg" alt="Mopomestari työssään" class="hero-image">
+        <div id="tietoa">
+            <h2 class="section-title">Tietoa sovelluksesta</h2>
+            <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto 40px;">
+                Mopomestari on ilmainen sovellus, joka opettaa nuorille tekniikkaa ja mopon huoltoa käytännönläheisesti. 
+                Opi korjaamaan, rakentamaan ja ymmärtämään moottorin sielunelämää.
+            </p>
+        </div>
+        <a href="/sovellus/index.html" class="cta-button">AVAA SOVELLUS TÄSTÄ</a>
+    </section>
+
+    <section>
+        <div class="grid">
+            <div class="card">
+                <h3>🛠️ Käytännön oppia</h3>
+                <p>Sovellus opastaa vaihe vaiheelta yleisimmissä mopon huoltotoimenpiteissä. Teoria muuttuu käytännöksi rasvaisten sormien kautta.</p>
+            </div>
+            <div class="card">
+                <h3>💡 Tekniikka haltuun</h3>
+                <p>Miten moottori toimii? Mitä tarkoittaa sytytyksen säätö? Mopomestari selittää vaikeat asiat selkeästi.</p>
+            </div>
+            <div class="card" style="border-left-color: #ffc107;">
+                <h3>⚠️ Turvallisuus ensin</h3>
+                <p>Muista: jokainen huolto on käyttäjän vastuulla. Käytä aina suojavarusteita ja kysy tarvittaessa apua kokeneemmalta.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="kumppanit" class="partners">
+        <h2 style="color: white; padding-top: 20px;">Tue tulevaisuuden tekijöitä</h2>
+        <p>Haluamme, että tekninen osaaminen on jokaisen nuoren saatavilla. Sovellus on vapaa kaikille varallisuudesta riippumatta.</p> 
+<p>Etsimme yrityskumppaneita, jotka jakavat visiomme nuorten teknisen osaamisen tukemisesta.</p>
+        <div style="background: white; color: #333; padding: 20px; border-radius: 15px; margin: 20px; display: inline-block;">
+            <h3>Ryhdy sponsoriksi</h3>
+            <p>Tarjoamalla tukea mahdollistat sovelluksen pysymisen ilmaisena kaikille.</p>
+        </div>
+    </section>
+
+    <section id="ota-yhteytta" style="text-align: center;">
+        <h2 class="section-title">Ota yhteyttä</h2>
+        <p>Onko sinulla palautetta sovelluksesta tai kysyttävää yhteistyöstä?</p>
+        <a href="mailto:mopomestari.palaute@gmail.com" class="email-link">mopomestari.palaute@gmail.com</a>
+    </section>
+
+    <footer>
+        <p>
+            <span class="footer-link" onclick="openModal('infoModal')">Tietoa meistä & Vastuuvapaus</span> | 
+            <span class="footer-link" onclick="openModal('privacyModal')">Tietosuoja</span>
+        </p>
+        <p>&copy; 2026 Mopomestari. Kaikki oikeudet pidätetään.</p>
+    </footer>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('infoModal')">&times;</span>
+            <h2>Mopomestari - Tietoa meistä</h2>
+            <p><strong>Mikä on Mopomestari?</strong> Mopomestari on itsenäinen opetusprojekti, jonka tavoitteena on auttaa suomalaisia nuoria ymmärtämään mopojen tekniikkaa, huoltoa ja turvallista liikkumista. Sovellus on kehitetty helpottamaan harrastamista ja tarjoamaan selkeitä ohjeita yleisimpiin mekaanisiin haasteisiin.</p>
+            <h3>Tekijänoikeudet ja Brändi</h3>
+            <p>Mopomestari-nimi, sovelluksen sisältö, ohjeet ja visuaalinen ilme ovat kehittäjän omaisuutta. Kaikki oikeudet pidätetään.</p>
+            <div style="background: #fff3cd; padding: 15px; border-radius: 10px; border-left: 5px solid #ffc107;">
+                <strong>Vastuuvapauslauseke (Disclaimer)</strong><br>
+                Vaikka Mopomestari tarjoaa neuvoja, jokainen huoltotoimenpide tehdään käyttäjän omalla vastuulla. Muista aina käyttää suojavarusteita, oikeita työkaluja ja noudattaa moposi virallista ohjekirjaa. Jos olet epävarma, kysy apua kokeneemmalta mekaanikolta!
+            </div>
+        </div>
+    </div>
+
+    <div id="privacyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('privacyModal')">&times;</span>
+            <h2>Tietosuoja ja Yksityisyys</h2>
+            <p><strong>1. Mitä tietoja keräämme?:</strong> Emme kerää henkilötietojasi, ellet lähetä niitä meille palautteen yhteydessä.</p>
+            <p><strong>2. Anonyymi analytiikka (Umami):</strong> Käytämme anonyymiä analytiikkaa ilman evästeitä. Emme tiedä, kuka yksittäinen henkilö sovellusta käyttää.</p>
+            <p><strong>3. Paikallinen tallennus:</strong> Omat mopotietosi tallentuvat vain oman laitteesi muistiin (Local Storage).</p>
+<p><strong>4. Yhteydenotot:</strong> Sähköpostiasi käytetään ainoastaan viestiisi vastaamiseen.</p>
+            <p><small>Päivitetty: 22. maaliskuuta 2026</small></p>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = "block";
+            document.body.style.overflow = "hidden";
+        }
+        function closeModal(id) {
+            document.getElementById(id).style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+    </script>
+</body>
+</html>
